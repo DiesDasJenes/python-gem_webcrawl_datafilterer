@@ -13,8 +13,7 @@ Overview
       - | |travis| |requires|
         | |codecov|
     * - package
-      - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
+      - | |commits-since|
 
 .. |docs| image:: https://readthedocs.org/projects/python-gem-webcrawl-datafilterer/badge/?version=latest
     :target: https://python-gem-webcrawl-datafilterer.readthedocs.io/en/latest/?badge=latest
@@ -32,22 +31,6 @@ Overview
     :alt: Coverage Status
     :target: https://codecov.io/github/diesdasjenes/python-gem_webcrawl_datafilterer
 
-.. |version| image:: https://img.shields.io/pypi/v/gem-webcrawl-datafilterer.svg
-    :alt: PyPI Package latest release
-    :target: https://pypi.org/project/gem-webcrawl-datafilterer
-
-.. |wheel| image:: https://img.shields.io/pypi/wheel/gem-webcrawl-datafilterer.svg
-    :alt: PyPI Wheel
-    :target: https://pypi.org/project/gem-webcrawl-datafilterer
-
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/gem-webcrawl-datafilterer.svg
-    :alt: Supported versions
-    :target: https://pypi.org/project/gem-webcrawl-datafilterer
-
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/gem-webcrawl-datafilterer.svg
-    :alt: Supported implementations
-    :target: https://pypi.org/project/gem-webcrawl-datafilterer
-
 .. |commits-since| image:: https://img.shields.io/github/commits-since/diesdasjenes/python-gem_webcrawl_datafilterer/v0.0.0.svg
     :alt: Commits since latest release
     :target: https://github.com/diesdasjenes/python-gem_webcrawl_datafilterer/compare/v0.0.0...master
@@ -63,13 +46,7 @@ The application will filter for actual articles about topics and remove unwanted
 Installation
 ============
 
-::
-
-    pip install gem-webcrawl-datafilterer
-
-You can also install the in-development version with::
-
-    pip install https://github.com/diesdasjenes/python-gem_webcrawl_datafilterer/archive/master.zip
+:: Not yet possible
 
 
 Documentation
