@@ -10,26 +10,23 @@ Overview
     * - docs
       - |docs|
     * - tests
-      - | |travis| |appveyor| |requires|
+      - | |travis| |requires|
         | |codecov|
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
         | |commits-since|
-.. |docs| image:: https://readthedocs.org/projects/python-gem_webcrawl_datafilterer/badge/?style=flat
-    :target: https://readthedocs.org/projects/python-gem_webcrawl_datafilterer
+
+.. |docs| image:: https://readthedocs.org/projects/python-gem-webcrawl-datafilterer/badge/?version=latest
+    :target: https://python-gem-webcrawl-datafilterer.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. |travis| image:: https://api.travis-ci.org/diesdasjenes/python-gem_webcrawl_datafilterer.svg?branch=master
+.. |travis| image:: https://travis-ci.org/DiesDasJenes/python-gem_webcrawl_datafilterer.svg?branch=master
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/diesdasjenes/python-gem_webcrawl_datafilterer
 
-.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/diesdasjenes/python-gem_webcrawl_datafilterer?branch=master&svg=true
-    :alt: AppVeyor Build Status
-    :target: https://ci.appveyor.com/project/diesdasjenes/python-gem_webcrawl_datafilterer
-
-.. |requires| image:: https://requires.io/github/diesdasjenes/python-gem_webcrawl_datafilterer/requirements.svg?branch=master
-    :alt: Requirements Status
-    :target: https://requires.io/github/diesdasjenes/python-gem_webcrawl_datafilterer/requirements/?branch=master
+.. |requires| image:: https://requires.io/github/DiesDasJenes/python-gem_webcrawl_datafilterer/requirements.svg?branch=master
+     :target: https://requires.io/github/DiesDasJenes/python-gem_webcrawl_datafilterer/requirements/?branch=master
+     :alt: Requirements Status
 
 .. |codecov| image:: https://codecov.io/gh/diesdasjenes/python-gem_webcrawl_datafilterer/branch/master/graphs/badge.svg?branch=master
     :alt: Coverage Status
