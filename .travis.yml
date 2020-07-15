@@ -8,12 +8,12 @@ env:
     - LANG=en_US.UTF-8
 matrix:
   include:
-    - python: '3.7'
-      env:
+    - env:
         - TOXENV=check
-    - python: '3.7'
-      env:
+      python: '3.8'
+    - env:
         - TOXENV=docs
+      python: '3.7'
     - env:
         - TOXENV=py37,codecov
       python: '3.7'
