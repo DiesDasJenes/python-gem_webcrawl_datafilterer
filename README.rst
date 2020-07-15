@@ -23,8 +23,8 @@ Overview
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/diesdasjenes/python-gem_webcrawl_datafilterer
 
-.. |requires| image:: https://requires.io/github/DiesDasJenes/python-gem_webcrawl_datafilterer/requirements.svg?branch=master
-     :target: https://requires.io/github/DiesDasJenes/python-gem_webcrawl_datafilterer/requirements/?branch=master
+.. |requires| image:: https://requires.io/github/DiesDasJenes/python-gem_webcrawl_datafilterer/requirements.svg?tag=v0.0.0
+     :target: https://requires.io/github/DiesDasJenes/python-gem_webcrawl_datafilterer/requirements/?tag=v0.0.0
      :alt: Requirements Status
 
 .. |codecov| image:: https://codecov.io/gh/diesdasjenes/python-gem_webcrawl_datafilterer/branch/master/graphs/badge.svg?branch=master
