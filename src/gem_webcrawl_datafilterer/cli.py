@@ -15,17 +15,21 @@ Why does this file exist, and why not put this in __main__?
   Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
 """
 import sys
+import pandas
+
+
+class SystemInterface:
+    @staticmethod
+    def read_csv(filepath):
+        return pandas.read_csv(filepath,
+                               delimiter='~',
+                               parse_dates=['Timestamp'],
+                               )
 
 
 def main(argv=sys.argv):
-    """
-    Args:
-        argv (list): List of arguments
-
-    Returns:
-        int: A return code
-
-    Does stuff.
-    """
-    print(argv)
+    filepath = argv[1]
+    standard_system_interface = SystemInterface()
+    data_frame = standard_system_interface.read_csv(filepath)
+    print(data_frame.head(10))
     return 0
