@@ -79,3 +79,12 @@ Note, to combine the coverage data from all the tox environments run:
       - ::
 
             PYTEST_ADDOPTS=--cov-append tox
+
+
+
+Source Material
+===============
+
+https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-setup-script
+https://www.samueldowling.com/2020/06/08/how-to-set-up-a-python-project-and-development-environment/
+https://sourcery.ai/blog/python-best-practices/
