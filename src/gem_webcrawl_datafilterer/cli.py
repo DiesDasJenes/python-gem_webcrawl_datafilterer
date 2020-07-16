@@ -16,6 +16,7 @@ Why does this file exist, and why not put this in __main__?
 """
 import sys
 import pandas
+import re
 
 
 class SystemInterface:
@@ -26,6 +27,47 @@ class SystemInterface:
                                parse_dates=['Timestamp'],
                                )
 
+    @staticmethod
+    def get_words_in_content_column(row):
+        return re.findall(r"[A-Za-zÄÖÜäöüß-]{2,}", row['Content'])
+
+
+def transform_to_lowercase_and_ascii(word):
+    umlauts = {
+        "ä": "ae",
+        "ö": "oe",
+        "ü": "ue",
+        "ß": "ss",
+    }
+    word = word.lower()
+    for umlaut, ascii_version in umlauts.items():
+        word = word.replace(umlaut, ascii_version)
+    return word
+
+
+def is_content_mentioned_in_link(standard_system_interface, row):
+    if row is None:
+        return False
+
+    words = standard_system_interface.get_words_in_content_column(row)
+    for word in words:
+        word = transform_to_lowercase_and_ascii(word)
+        if word in row['Link']:
+            return True
+
+    return False
+
+
+def delete_unwanted_rows(data_frame):
+    for row in data_frame:
+        print(is_content_mentioned_in_link(row))
+    raise NotImplementedError('Not implemented')
+
+
+# Run through rows O(n)
+# On every Row check for Condition
+# If True: Add index to DeletionCandidatesList False: Continoue
+# At the end pandas.drop(DCList) (df_org.drop(index=['Bob', 'Dave', 'Frank'], inplace=True)
 
 def main(argv=sys.argv):
     filepath = argv[1]
