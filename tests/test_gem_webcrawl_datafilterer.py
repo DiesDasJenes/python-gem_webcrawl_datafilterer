@@ -45,7 +45,7 @@ class MockedSystemInterfaceMixedRows:
 
     @staticmethod
     def get_words_in_content_column(row):
-        if row['Keywords'] is 'House':
+        if row['Keywords'] == 'House':
             return ['videoTitle', 'Löwe', 'in', 'the', 'house', 'strong', 'Uhr', 'strong', 'Die', 'Wilke', 'Waldecke']
         else:
             return ['some', 'content', 'is', 'in', 'here', 'we', 'dont', 'want', 'as', 'it', 'is', 'not', 'interesting']
