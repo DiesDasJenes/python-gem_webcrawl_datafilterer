@@ -1,12 +1,13 @@
 import pandas
 from gem_webcrawl_datafilterer.cli import transform_to_lowercase_and_ascii
+from gem_webcrawl_datafilterer.cli import is_content_mentioned_in_link
 
 
 class MockedSystemInterfaceUnwantedRow:
     @staticmethod
     def read_csv(filepath):
-        d = {'Type': 'combination', 'Keywords': 'NotFun', 'Content': 'Bla', 'Timestamp': '01:53:46-08.10.19',
-             'Link': 'https://www.bild.de/'}
+        d = {'Type': ['combination'], 'Keywords': ['NotFun'], 'Content': ['Bla'], 'Timestamp': ['01:53:46-08.10.19'],
+             'Link': ['https://www.bild.de/']}
         return pandas.DataFrame(data=d)
 
     @staticmethod
@@ -17,10 +18,11 @@ class MockedSystemInterfaceUnwantedRow:
 class MockedSystemInterfaceWantedRow:
     @staticmethod
     def read_csv(filepath):
-        d = {'Type': 'combination', 'Keywords': 'House',
-             'Content': '"videoTitle": Löwe in the house</h2><p><strong>17:10 Uhr:</strong> Die Wilke Waldecke',
-             'Timestamp': '01:53:46-08.10.19',
-             'Link': 'https://www.media.de/video/startseite/funchannel-home/video-loewe-home-15713248.bild.html'}
+        d = {'Type': ['combination'], 'Keywords': ['House'],
+             'Content': ['"videoTitle": Löwe in the house</h2><p><strong>17:10 Uhr:</strong> Die Wilke Waldecke'],
+             'Timestamp': ['01:53:46-08.10.19'],
+             'Link': ['https://www.media.de/video/startseite/funchannel-home/video-loewe-home-15713248.bild.html']
+             }
         return pandas.DataFrame(data=d)
 
     @staticmethod
@@ -48,18 +50,15 @@ class TestClearDataFrameFromUnwantedRows:
     mocked_negative_standard_interface = MockedSystemInterfaceUnwantedRow()
 
     def test_should_be_false_with_null_value(self):
-        # result = is_content_mentioned_in_link(self.mocked_positive_standard_interface, None)
-        # assert result is False
-        pass
+        result = is_content_mentioned_in_link(self.mocked_negative_standard_interface, None)
+        assert result is False
 
     def test_should_be_false_when_keywords_are_not_reflected_in_link(self):
-        # unwanted_row = self.mocked_negative_standard_interface.read_csv('someFile').head()
-        # result = is_content_mentioned_in_link(self.mocked_negative_standard_interface, unwanted_row)
-        # assert result is False
-        pass
+        unwanted_row = self.mocked_negative_standard_interface.read_csv('someFile').head()
+        result = is_content_mentioned_in_link(self.mocked_negative_standard_interface, unwanted_row)
+        assert result is False
 
     def test_should_be_true_when_keywords_are_reflected_in_link(self):
-        # wanted_row = self.mocked_positive_standard_interface.read_csv('someFile').head()
-        # result = is_content_mentioned_in_link(self.mocked_negative_standard_interface, wanted_row)
-        # assert result is True
-        pass
+        wanted_row = self.mocked_positive_standard_interface.read_csv('someFile').head()
+        result = is_content_mentioned_in_link(self.mocked_positive_standard_interface, wanted_row)
+        assert result is True

@@ -46,14 +46,12 @@ def transform_to_lowercase_and_ascii(word):
 
 
 def is_content_mentioned_in_link(standard_system_interface, row):
-    if row is None:
-        return False
-
-    words = standard_system_interface.get_words_in_content_column(row)
-    for word in words:
-        word = transform_to_lowercase_and_ascii(word)
-        if word in row['Link']:
-            return True
+    if row is not None:
+        words = standard_system_interface.get_words_in_content_column(row)
+        for word in words:
+            word = transform_to_lowercase_and_ascii(word)
+            if word in row['Link'][0]:
+                return True
 
     return False
 
