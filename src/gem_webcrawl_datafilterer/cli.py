@@ -50,7 +50,7 @@ def is_content_mentioned_in_link(standard_system_interface, row):
         words = standard_system_interface.get_words_in_content_column(row)
         for word in words:
             word = transform_to_lowercase_and_ascii(word)
-            if word in row['Link'][0]:
+            if word in row['Link']:
                 return True
 
     return False

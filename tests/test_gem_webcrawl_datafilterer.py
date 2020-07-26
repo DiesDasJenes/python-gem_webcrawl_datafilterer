@@ -54,11 +54,11 @@ class TestClearDataFrameFromUnwantedRows:
         assert result is False
 
     def test_should_be_false_when_keywords_are_not_reflected_in_link(self):
-        unwanted_row = self.mocked_negative_standard_interface.read_csv('someFile').head()
+        unwanted_row = self.mocked_negative_standard_interface.read_csv('someFile').iloc[0]
         result = is_content_mentioned_in_link(self.mocked_negative_standard_interface, unwanted_row)
         assert result is False
 
     def test_should_be_true_when_keywords_are_reflected_in_link(self):
-        wanted_row = self.mocked_positive_standard_interface.read_csv('someFile').head()
+        wanted_row = self.mocked_positive_standard_interface.read_csv('someFile').iloc[0]
         result = is_content_mentioned_in_link(self.mocked_positive_standard_interface, wanted_row)
         assert result is True
