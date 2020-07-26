@@ -1,6 +1,7 @@
 import pandas
 from gem_webcrawl_datafilterer.cli import transform_to_lowercase_and_ascii
 from gem_webcrawl_datafilterer.cli import is_content_mentioned_in_link
+from gem_webcrawl_datafilterer.cli import collect_unwanted_rows
 
 
 class MockedSystemInterfaceUnwantedRow:
@@ -30,6 +31,26 @@ class MockedSystemInterfaceWantedRow:
         return ['videoTitle', 'Löwe', 'in', 'the', 'house', 'strong', 'Uhr', 'strong', 'Die', 'Wilke', 'Waldecke']
 
 
+class MockedSystemInterfaceMixedRows:
+    @staticmethod
+    def read_csv(filepath):
+        d = {'Type': ['combination', 'someType'], 'Keywords': ['House', 'Iceberg'],
+             'Content': ['"videoTitle": Löwe in the house</h2><p><strong>17:10 Uhr:</strong> Die Wilke Waldecke',
+                         'some content is in here we dont want as it is not interesting'],
+             'Timestamp': ['01:53:46-08.10.19', '11:53:46-08.10.19'],
+             'Link': ['https://www.media.de/video/startseite/funchannel-home/video-loewe-home-15713248.bild.html',
+                      'https://www.CloudsLottaClouds.de']
+             }
+        return pandas.DataFrame(data=d)
+
+    @staticmethod
+    def get_words_in_content_column(row):
+        if row['Keywords'] is 'House':
+            return ['videoTitle', 'Löwe', 'in', 'the', 'house', 'strong', 'Uhr', 'strong', 'Die', 'Wilke', 'Waldecke']
+        else:
+            return ['some', 'content', 'is', 'in', 'here', 'we', 'dont', 'want', 'as', 'it', 'is', 'not', 'interesting']
+
+
 class TestTransformWords:
 
     def test_should_transform_to_lowercase(self):
@@ -48,6 +69,7 @@ class TestTransformWords:
 class TestClearDataFrameFromUnwantedRows:
     mocked_positive_standard_interface = MockedSystemInterfaceWantedRow()
     mocked_negative_standard_interface = MockedSystemInterfaceUnwantedRow()
+    mocked_mixed_rows_standard_interface = MockedSystemInterfaceMixedRows()
 
     def test_should_be_false_with_null_value(self):
         result = is_content_mentioned_in_link(self.mocked_negative_standard_interface, None)
@@ -62,3 +84,10 @@ class TestClearDataFrameFromUnwantedRows:
         wanted_row = self.mocked_positive_standard_interface.read_csv('someFile').iloc[0]
         result = is_content_mentioned_in_link(self.mocked_positive_standard_interface, wanted_row)
         assert result is True
+
+    def test_collect_unwanted_rows(self):
+        index_of_unwanted_row = 1
+        mixed_rows = self.mocked_mixed_rows_standard_interface.read_csv('someFole')
+        result = collect_unwanted_rows(self.mocked_mixed_rows_standard_interface, mixed_rows)
+        assert len(result) == 1
+        assert result[0] == index_of_unwanted_row

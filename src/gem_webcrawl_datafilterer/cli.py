@@ -56,15 +56,19 @@ def is_content_mentioned_in_link(standard_system_interface, row):
     return False
 
 
-def delete_unwanted_rows(data_frame):
-    for row in data_frame:
-        print(is_content_mentioned_in_link(row))
-    raise NotImplementedError('Not implemented')
+def collect_unwanted_rows(standard_system_interface, data_frame):
+    unwanted_rows_indexes = list()
+    for index, row in data_frame.iterrows():
+        if not is_content_mentioned_in_link(standard_system_interface, row):
+            unwanted_rows_indexes.append(index)
+
+    return unwanted_rows_indexes
 
 
 # Run through rows O(n)
 # On every Row check for Condition
 # If True: Add index to DeletionCandidatesList False: Continoue
+# Every 500-1000 Indexes print the index number
 # At the end pandas.drop(DCList) (df_org.drop(index=['Bob', 'Dave', 'Frank'], inplace=True)
 
 def main(argv=sys.argv):
